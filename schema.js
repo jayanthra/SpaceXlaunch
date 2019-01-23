@@ -29,11 +29,17 @@ const LaunchType = new GraphQLObjectType({
         launch_success: {
             type: GraphQLBoolean
         },
+        upcoming: {
+            type: GraphQLBoolean
+        },
         rocket: {
             type: RocketType
         },
         links: {
             type: LaunchMediaType
+        },
+        details:{
+            type: GraphQLString
         }
     })
 });
@@ -55,7 +61,13 @@ const LaunchMediaType = new GraphQLObjectType({
         },
         flickr_images: {
             type: GraphQLList(GraphQLString)
-        }
+        },
+		youtube_id:{
+			type: GraphQLString
+		},
+		presskit:{
+			type: GraphQLString
+		}
     })
 })
 

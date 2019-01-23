@@ -14,6 +14,7 @@ query LaunchQuery($flight_number: Int!){
         launch_year
         launch_date_local
         launch_success
+        details
        rocket {
          rocket_id
          rocket_name
@@ -23,7 +24,8 @@ query LaunchQuery($flight_number: Int!){
          mission_patch
          mission_patch_small
          article_link
-         video_link
+         youtube_id
+         presskit
          flickr_images
        }
     }
@@ -42,27 +44,20 @@ class LaunchDetail extends Component {
                             if (loading) return <h5 style={{ color: 'white' }}>loading...</h5>
                             if (error) console.log(error)
 
-                            console.log(data.launch);
-                            
-
                             const {
                                 mission_name,
                                 flight_number,
                                 launch_date_local,
                                 launch_success,
+                                details,
                                 rocket: { rocket_name, rocket_type },
-                                links: { video_link, mission_patch_small, article_link, flickr_images }
+                                links: { youtube_id, presskit, mission_patch_small, article_link, flickr_images }
                             } = data.launch;
-                            let videoUrl
-
-                            if (video_link) {
-                                videoUrl = video_link.split('v=')[1];
-                            }
 
                             const ImageList = []
 
-                            if(flickr_images.length>0){
-                              
+                            if (flickr_images.length > 0) {
+
                                 flickr_images.forEach(imageurl => {
                                     let item = {};
                                     item.src = imageurl;
@@ -71,7 +66,7 @@ class LaunchDetail extends Component {
                                     item.thumbnailHeight = 174;
                                     ImageList.push(item)
                                 });
-                            }                         
+                            }
 
 
 
@@ -79,7 +74,9 @@ class LaunchDetail extends Component {
                                 <div>
                                     <h1 style={{ color: 'white' }} className="my-3">
                                         <span style={{ color: 'grey' }}>Mission:</span> {mission_name}
-                                        <span>    <img style={{ height: 60 }} src={mission_patch_small} alt="badge" /></span>
+                                        {
+                                            mission_patch_small && <span> <img style={{ height: 60 }} src={mission_patch_small} alt="badge" /></span>
+                                        }
                                     </h1>
 
                                     <ul className="list-group">
@@ -99,6 +96,12 @@ class LaunchDetail extends Component {
                                         </li>
                                     </ul>
 
+                                    <ul className="list-group">
+                                        <li style={{ color: 'black' }} className="list-group-item">
+                                            {details}
+                                        </li>
+                                    </ul>
+
                                     <h4 style={{ color: 'grey' }} className="my-3">Rocket Details</h4>
                                     <ul className="list-group">
                                         <li style={{ color: 'black' }} className="list-group-item">
@@ -109,16 +112,19 @@ class LaunchDetail extends Component {
                                         </li>
                                     </ul>
 
-                                    {
-                                        (videoUrl || article_link) && <h4 style={{ color: 'grey' }} className="my-3">Launch Media</h4>
-
-                                    }
                                     <ul className="list-group">
                                         {
-                                            videoUrl && <YouTube className="mt-3" video={videoUrl} autoplay="0" rel="0" modest="1" />
+                                            youtube_id && <YouTube className="mt-3" video={youtube_id} autoplay="0" rel="0" modest="1" />
                                         }
+
+                                    </ul>
+
+                                    <ul className="list-group">
                                         {
                                             article_link && <a className="btn btn-info" rel="noopener noreferrer" href={article_link} target="_blank" >More</a>
+                                        }
+                                        {
+                                            presskit && <a className="btn btn-danger" rel="noopener noreferrer" href={presskit} target="_blank" >Presskit</a>
                                         }
                                     </ul>
 

@@ -11,6 +11,7 @@ query LaunchesQuery{
       launch_year
       launch_date_local
       launch_success
+      upcoming
       links {
         mission_patch_small
       }
@@ -22,19 +23,20 @@ class Launches extends Component {
     render() {
         return (
             <Fragment>
-               <h3 style={{color:'white'}} className="my-3">Launches</h3>
                <Query query={LAUNCHES_QUERY}>
                {
                   ({loading,error,data})=>{
                     if(loading) return <h5 style={{color:'white'}}>loading...</h5>
                     if(error) console.log(error)
-                    return <Fragment>
+                    return <div className="row mt-5">
                         {
                             data.launches.map(launchitem=>(
-                                <LaunchItem key={launchitem.flight_number} item={launchitem}/>
+                                <div className="col-md-4 col-lg-4">
+                                <LaunchItem  key={launchitem.flight_number} item={launchitem}/>
+                                </div>
                             ))
                         }
-                    </Fragment> 
+                    </div> 
                   }
                }
                </Query>
