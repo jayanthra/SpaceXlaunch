@@ -4,15 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Details of all Space X launch with graphql implementation
 
+### [DEMO](https://nameless-plateau-22657.herokuapp.com/)
+
 Listing page
 ![Lising page](https://raw.githubusercontent.com/jayanthra/SpaceXlaunch/master/client/src/images/listing.png)
 
 
 Details page
 ![Details page](https://raw.githubusercontent.com/jayanthra/SpaceXlaunch/master/client/src/images/details.png)
-
-
-### [DEMO](https://nameless-plateau-22657.herokuapp.com/)
 
 ## Available Scripts
 
