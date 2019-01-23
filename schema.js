@@ -44,6 +44,9 @@ const LaunchMediaType = new GraphQLObjectType({
         mission_patch: {
             type: GraphQLString
         },
+        mission_patch_small: {
+            type: GraphQLString
+        },
         article_link: {
             type: GraphQLString
         },
