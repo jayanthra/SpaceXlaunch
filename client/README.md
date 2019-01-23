@@ -4,6 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Details of all Space X launch with graphql implementation
 
+Listing page
+![Lising page](https://raw.githubusercontent.com/jayanthra/SpaceXlaunch/master/client/src/images/listing.png)
+
+
+Details page
+![Details page](https://raw.githubusercontent.com/jayanthra/SpaceXlaunch/master/client/src/images/details.png)
 
 ## Available Scripts
 
